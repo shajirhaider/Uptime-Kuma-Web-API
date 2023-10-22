@@ -18,7 +18,9 @@ router = APIRouter(redirect_slashes=True)
 
 @router.post("/access-token", response_model = JWToken)
 async def login_access_token(form_data : OAuth2PasswordRequestForm = Depends()):
+    print(form_data.password)
     user_obj = await Users.get_or_none(username=form_data.username)
+    print(user_obj.password_hash, user_obj.username)
     user = authenticate(user_obj, form_data.password)
     if not user:
         logging.info("Incorrect username or password")
@@ -30,8 +32,10 @@ async def login_access_token(form_data : OAuth2PasswordRequestForm = Depends()):
 
         logging.fatal(f"hello from {settings.KUMA_SERVER}")
         api = UptimeKumaApi(settings.KUMA_SERVER)
-        resp = api.login(settings.KUMA_USERNAME, settings.KUMA_PASSWORD)
 
+        logging.fatal(f"api from {settings.KUMA_SERVER}")
+
+        resp = api.login(settings.KUMA_USERNAME, settings.KUMA_PASSWORD)
         logging.info("Logged in to UptimeKuma")
 
         access_token_expires = timedelta(minutes = settings.ACCESS_TOKEN_EXPIRE)
@@ -39,6 +43,7 @@ async def login_access_token(form_data : OAuth2PasswordRequestForm = Depends()):
 
     except UptimeKumaException as e :
         logging.info(e)
+        logging.fatal(e)
         raise HTTPException(400, {"message": "Incorrect Kuma credentials"})
     except Exception as e:
         logging.fatal(e)

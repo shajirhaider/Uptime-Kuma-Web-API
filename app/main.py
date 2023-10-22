@@ -15,6 +15,7 @@ from routers import (
     user,
     settings,
     maintenance,
+    notification
 )
 from config import settings as app_settings, logger
 from app_setup import initialize_app
@@ -34,6 +35,7 @@ app.include_router(info.router, prefix="/info", tags=["Informations"])
 app.include_router(ping.router, prefix="/ping", tags=["Ping Average"])
 app.include_router(uptime.router, prefix="/uptime", tags=["Uptime"])
 app.include_router(auth.router, prefix="/login", tags=["Authentication"])
+app.include_router(notification.router, prefix="/notification", tags=["Notification"])
 
 
 @app.on_event("startup")
