@@ -24,7 +24,7 @@ async def create_notification(notification: Notification,cur_user: API = Depends
 
     return resp
 
-@router.post("/edit/{notification_id}", description="Update a Notification")
+@router.patch("/edit/{notification_id}", description="Update a Notification")
 async def update_notification(notification: Notification,notification_id:int=Path(...),cur_user: API = Depends(get_current_user)):
     api: UptimeKumaApi = cur_user['api']
     try:
