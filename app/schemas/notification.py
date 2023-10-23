@@ -12,8 +12,9 @@ class Notification(BaseModel):
     type: NotificationType
     isDefault: Optional[bool] = false
     telegramBotToken: Optional[str] = None
-    telegramBotToken: Optional[str] = None
+    telegramSendSilently: Optional[bool] = false
     telegramChatID: Optional[str] = None
+    telegramMessageThreadID :  Optional[str] = None
     smtpBCC: Optional[str] = None
     smtpCC: Optional[str] = None
     smtpFrom: Optional[str] = None
