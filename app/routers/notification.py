@@ -41,7 +41,7 @@ async def update_notification(notification: Notification,notification_id:int=Pat
 
     return {**resp, "notification_data":notification.dict(exclude_unset=True)}
 
-@router.delete("delete/{notification_id}", description="Delete a specific notification")
+@router.delete("/delete/{notification_id}", description="Delete a specific notification")
 async def delete_monitor(notification_id:int=Path(...) ,cur_user: API = Depends(get_current_user)):
     api: UptimeKumaApi = cur_user['api']
     try:

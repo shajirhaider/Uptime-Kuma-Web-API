@@ -7,10 +7,10 @@ from uptime_kuma_api import  NotificationType
 
 class Notification(BaseModel):
 
-    # MQTT
-    name: Optional[str] = None
-    type: Optional[NotificationType] = None
-    isDefault: Optional[str] = None
+    # MQT
+    name: str
+    type: NotificationType
+    isDefault: Optional[bool] = false
     telegramBotToken: Optional[str] = None
     telegramBotToken: Optional[str] = None
     telegramChatID: Optional[str] = None
@@ -19,7 +19,7 @@ class Notification(BaseModel):
     smtpFrom: Optional[str] = None
     smtpHost: Optional[str] = None
     smtpPassword: Optional[str] = None
-    smtpPort: Optional[str] = None
+    smtpPort: Optional[int] = None
     smtpTo: Optional[str] = None
     smtpUsername: Optional[str] = None
     # state: Optional[str] = None
