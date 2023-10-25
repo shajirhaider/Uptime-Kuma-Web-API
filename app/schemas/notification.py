@@ -10,9 +10,9 @@ class Notification(BaseModel):
     # MQT
     name: str
     type: NotificationType
-    isDefault: Optional[bool] = false
+    isDefault: Optional[bool] = False
     telegramBotToken: Optional[str] = None
-    telegramSendSilently: Optional[bool] = false
+    telegramSendSilently: Optional[bool] = False
     telegramChatID: Optional[str] = None
     telegramMessageThreadID :  Optional[str] = None
     smtpBCC: Optional[str] = None
